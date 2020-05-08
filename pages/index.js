@@ -1,12 +1,15 @@
 import "../styles/index.scss";
 import MenuCard from "../components/Cards/MenuCard";
+import DesktopLayout from "../components/Layout/DesktopLayout";
+import MainSection from "../components/Sections/MainSection";
+import RecipeSection from "../components/Sections/RecipeSection";
 
 const HomePage = () => {
 	return (
-		<div>
-			<MenuCard title={"Beef"} icon={"/icons/beef.svg"} />
-			<MenuCard title={"Fish"} icon={"/icons/beef.svg"} />
-		</div>
+		<DesktopLayout>
+			<MainSection />
+			<RecipeSection />
+		</DesktopLayout>
 	)
 }
 
