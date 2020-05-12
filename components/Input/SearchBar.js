@@ -14,12 +14,12 @@ const SearchBar = ({title,icon}) => {
 		<>
     		<input
     			type="text"
-	    		placeholder="Search"
+	    		placeholder="enter keyword here"
 	    		value={[searchTerm]}
 	    		onChange={handleChange}
 	    		onKeyDown={handleEnter}
 		    />
-		    </>
+		</>
     )
 }
 export default SearchBar

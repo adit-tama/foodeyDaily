@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../Misc/Footer";
 
 const DesktopLayout = (props) => {
 	return(
@@ -9,6 +10,7 @@ const DesktopLayout = (props) => {
     		<div className={"RecipeSection"}>
     			{props.children[1]}
     		</div>
+            <Footer />
     	</div>
     )
 }

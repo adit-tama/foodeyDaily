@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import RecipeCard from "../Cards/RecipeCard";
+import {Row,Col} from "reactstrap";
 
 const RecipeSection = ({title,icon}) => {
 	const [cardAct, setCardAct] = useState(false)
@@ -9,23 +10,29 @@ const RecipeSection = ({title,icon}) => {
 	const [card4, setCard4] = useState(true)
 	const [card5, setCard5] = useState(true)
 	const [card6, setCard6] = useState(true)
-	// const cards = [
-	// 	["recipe card1",[card1, setCard1]],
-	// 	["recipe card2",[card2, setCard2]],
-	// 	["recipe card3",[card3, setCard3]],
-	// 	["recipe card4",[card4, setCard4]],
-	// 	["recipe card5",[card5, setCard5]],
-	// 	["recipe card6",[card6, setCard6]]
-	// ]
-
 	const cards = [
-		["recipe card1",[cardAct, setCardAct],card1],
-		["recipe card2",[cardAct, setCardAct],card2],
-		["recipe card3",[cardAct, setCardAct],card3],
-		["recipe card4",[cardAct, setCardAct],card4],
-		["recipe card5",[cardAct, setCardAct],card5],
-		["recipe card6",[cardAct, setCardAct],card6],
+		"recipe card1",
+		"recipe card2",
+		"recipe card3",
+		"recipe card4",
+		"recipe card5",
+		"recipe card6",
+		"recipe card1",
+		"recipe card2",
+		"recipe card3",
+		"recipe card4",
+		"recipe card5",
+		"recipe card6",
 	]
+
+	// const cards = [
+	// 	["recipe card1",[cardAct, setCardAct],card1],
+	// 	["recipe card2",[cardAct, setCardAct],card2],
+	// 	["recipe card3",[cardAct, setCardAct],card3],
+	// 	["recipe card4",[cardAct, setCardAct],card4],
+	// 	["recipe card5",[cardAct, setCardAct],card5],
+	// 	["recipe card6",[cardAct, setCardAct],card6],
+	// ]
 
 	const handleClick = (index) => {
 		setCard1(false)
@@ -73,24 +80,25 @@ const RecipeSection = ({title,icon}) => {
     		<div className={"flexColumnEndFluid"} style={{height:"10%"}}>
     			<span className={'keyword'}> keyword : <b>Meat</b></span>
     		</div>
-
-    		<div className={'flexRowCenterFluid'} style={{height:"70%",flexWrap:"wrap"}}>
-				{
-					cards.map((data,index) => {
-						return (
-							<RecipeCard 
-								onAction={handleClick}
-								cardAct={data[1]} 
-								cardIndex={data[2]} 
-								index={index} 
-								key={index} 
-								title={data}
-								reset={reset}
-							/>
-						)
-					})
-				}
-    		</div>
+    		<div style={{display:"block",height:"62%",width:"100%",overflow:"scroll"}}>
+	    		<div class="grid-container">
+					{
+						cards.map((data,index) => {
+							return (
+								<div class="grid-item">
+								<RecipeCard 
+									onAction={handleClick}
+									index={index} 
+									key={index} 
+									title={data}
+									reset={reset}
+								/>
+								</div>
+							)
+						})
+					}
+				</div>
+			</div>
     	</div>
     )
 }
