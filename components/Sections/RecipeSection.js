@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from "react";
 import RecipeCard from "../Cards/RecipeCard";
 import {Row,Col} from "reactstrap";
+import "animate.css/animate.min.css";
+import ScrollAnimation from 'react-animate-on-scroll';
+
+
 
 const RecipeSection = ({title,icon}) => {
-	const [cardAct, setCardAct] = useState(false)
-	const [card1, setCard1] = useState(true)
-	const [card2, setCard2] = useState(true)
-	const [card3, setCard3] = useState(true)
-	const [card4, setCard4] = useState(true)
-	const [card5, setCard5] = useState(true)
-	const [card6, setCard6] = useState(true)
+	const [cardAct, setCardAct] = useState(true);
+	const [recipeList, setRecipeList] = useState([]);
+	const app_ID = "7dd468f3";
+	const app_KEY = "f806c31d60ed2fdaf0ad61bc6c4734e8";
+	const url = `https://api.edamam.com/search?q=chicken&app_id=${app_ID}&app_key=${app_KEY}&from=0&to=10&calories=591-722&health=alcohol-free`
+	
+	const getRecipe = async () => {
+		const data = await fetch(url).then(data => {return data.json()});
+		console.log(data.hits)
+		setRecipeList(data.hits);
+	}
+
+	useEffect(() => {
+		getRecipe();
+	});
+
 	const cards = [
 		"recipe card1",
 		"recipe card2",
@@ -24,47 +37,6 @@ const RecipeSection = ({title,icon}) => {
 		"recipe card5",
 		"recipe card6",
 	]
-
-	// const cards = [
-	// 	["recipe card1",[cardAct, setCardAct],card1],
-	// 	["recipe card2",[cardAct, setCardAct],card2],
-	// 	["recipe card3",[cardAct, setCardAct],card3],
-	// 	["recipe card4",[cardAct, setCardAct],card4],
-	// 	["recipe card5",[cardAct, setCardAct],card5],
-	// 	["recipe card6",[cardAct, setCardAct],card6],
-	// ]
-
-	const handleClick = (index) => {
-		setCard1(false)
-		setCard2(false)
-		setCard3(false)
-		setCard4(false)
-		setCard5(false)
-		setCard6(false)
-
-		switch (index) {
-		  case 0:
-		    setCard1(true);
-		    break;
-		  case 1:
-		    setCard2(true);
-		    break;
-		  case 2:
-		    setCard3(true);
-		    break;
-		  case 3:
-		    setCard4(true);
-		    break;
-		  case 4:
-		    setCard5(true);
-		    break;
-		  case 5:
-		    setCard6(true);
-		    break;
-		  default:
-		  	break;
-		}
-	}
 
 	const reset = () => {
 		setCard1(true)
@@ -81,19 +53,23 @@ const RecipeSection = ({title,icon}) => {
     			<span className={'keyword'}> keyword : <b>Meat</b></span>
     		</div>
     		<div style={{display:"block",height:"62%",width:"100%",overflow:"scroll"}}>
-	    		<div class="grid-container">
+	    		<div className="grid-container">
+	    			
 					{
-						cards.map((data,index) => {
+						recipeList.map((data,index) => {
 							return (
-								<div class="grid-item">
-								<RecipeCard 
-									onAction={handleClick}
-									index={index} 
-									key={index} 
-									title={data}
-									reset={reset}
-								/>
+								
+								<div key={index} className="grid-item">
+									<RecipeCard 
+										key={index} 
+										hits={data}
+										source={data.recipe.source}
+										label={data.recipe.label}
+										image={data.recipe.image}
+										calories = {Math.round(data.recipe.calories)}
+									/>
 								</div>
+								
 							)
 						})
 					}
