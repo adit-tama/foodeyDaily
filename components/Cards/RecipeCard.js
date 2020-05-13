@@ -3,19 +3,24 @@ import { Modal,ModalBody ,ModalFooter, Button, Row, Col} from 'reactstrap';
 import Fade from 'react-reveal/Fade';
 
 const imageurl = "https://www.edamam.com/web-img/a23/a2300a1c6b33bee0963f380782d48e27.jpg"
-const RecipeCard = ({label="Testing",calories="1200Kal",source="BBC", image=imageurl}) => {
+const RecipeCard = ({label="Testing",calories="1200Kal",source="BBC", image=imageurl,ingredients=[]}) => {
 	const [inProp, setInProp] = useState(false);
+	console.log(ingredients)
 	const duration = 300;
-	const defaultStyle = {
-	  transition: `opacity ${duration}ms ease-in-out`,
-	  opacity: 0,
-	}
-	const transitionStyles = {
-	  entering: { opacity: 1 },
-	  entered:  { opacity: 1 },
-	  exiting:  { opacity: 0 },
-	  exited:  { opacity: 0 },
-	};
+	const cards = [
+		"recipe card1",
+		"recipe card2",
+		"recipe card3",
+		"recipe card4",
+		"recipe card5",
+		"recipe card6",
+		"recipe card1",
+		"recipe card2",
+		"recipe card3",
+		"recipe card4",
+		"recipe card5",
+		"recipe card6",
+	]
 	const [active, setActive] = useState(false)
 	const toggle = () => setModal(!modal);
 	const [modal, setModal] = useState(false);
@@ -37,7 +42,27 @@ const RecipeCard = ({label="Testing",calories="1200Kal",source="BBC", image=imag
 		    </Fade>
 	    	 <Modal size={'lg'}isOpen={modal} toggle={toggle}>
 			    <ModalBody>
-			      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			      <Row style={{height:"30rem",padding:"2rem"}}>
+		    			<Col style={{display:"flex",flexDirection:"column",justifyContent:"flex-start", alignItems:"flex-start"}} sm={'6'}>
+		    				<h3 className={"tile"} style={{color:"black"}}>{label}</h3>
+		    				<p className={"tile"}>{`${source}  |  calories: ${calories}`}</p>
+		    				<div style={{marginTop:"1rem"}}>
+		    					<h2 className={"tile"}>{"Ingredients"}</h2>
+		    					<div style={{overflow:"scroll",width:"80%",height:"100"}}>
+		    					<ul>
+		    						{ingredients.map((data,index) => {
+											return ( 
+													<li className={"tile"}>{data}</li>
+												
+											)
+										})
+									}
+		    					</ul>
+		    					</div>
+		    				</div>
+		    			</Col>
+		    			<img className={"tile"}style={{position:"absolute", bottom:"10%", right:"5%",borderRadius:"10px"}} src={image} alt='image' width={"400"} height={"400"}/>
+		    		</Row>
 			    </ModalBody>
 			  </Modal>
 		</>
