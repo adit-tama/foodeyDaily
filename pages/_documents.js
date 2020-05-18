@@ -28,6 +28,7 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
+          <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;700&display=swap" rel="stylesheet" />
           <title>My page</title>
         </Head>
         <body>
