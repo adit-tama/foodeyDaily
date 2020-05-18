@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 
-const SearchBar = ({title,icon}) => {
+const SearchBar = ({setKeyword,keyword}) => {
 	const [searchTerm, setSearchTerm] = useState('')
 	const handleChange = event => {
 		setSearchTerm(event.target.value);
 	};
 	const handleEnter = event => {
 		if (event.key === 'Enter') {
-			alert(searchTerm);
+			setKeyword(searchTerm)
 		}
 	};
 	return(

@@ -1,29 +1,39 @@
 import React from "react";
 import MenuCard from '../Cards/MenuCard';
 import SearchBar from '../Input/SearchBar';
+import {Menus} from '../Constant';
+import styled from 'styled-components';
+import {MenuScroll, TaglineContainer, LogoContainer, MenuContainer} from './StyledSectionsComponents';
 
-const MainSection = ({title,icon}) => {
-	const Menus = [
-		{title:"Beef", icon:"/icons/beef.svg"},
-		{title:"Fish", icon:"/icons/fish.svg"},
-		{title:"Cheese", icon:"/icons/cheese.svg"},
-		{title:"Chicken", icon:"/icons/chicken.svg"},
-	]
+const MainSection = ({ keyword,setKeyword}) => {
 	return(
-    	<div className={'flexColumnStartFluid'}>
-    		<div className={'logo'}>
+    	<MenuContainer>
+    		<LogoContainer>
     			<img width={"70%"} src={"/icons/logo.svg"} />
-    		</div>
-    		<div className={"tagline"}>
+    		</LogoContainer>
+    		<TaglineContainer>
     			<h1> Get your daily recipe here! </h1>
-    		</div>
-    		<SearchBar />
-    		<div className={"menuScroll"}>
+    		</TaglineContainer>
+    		<SearchBar 
+          keyword={keyword}  
+          setKeyword={setKeyword} 
+        />
+    		<MenuScroll >
 	    		{Menus.map(menu => (
-	    			<MenuCard title={menu.title} icon={menu.icon} />
+	    			<MenuCard 
+              key={menu.title}
+              title={menu.title} 
+              icon={menu.icon} 
+            />
 	    		))}
-    		</div>
-    	</div>
+    		</MenuScroll>
+    	</MenuContainer>
     )
 }
+
+MainSection.defaultProps = {
+  keyword: "default",
+  setKeyword: () => {console.log("set keyword ")}
+}
+
 export default MainSection
