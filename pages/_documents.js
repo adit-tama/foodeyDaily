@@ -11,6 +11,7 @@ export default class SiteDocument extends Document {
       <html>
         <Head>
           <meta charSet="utf-8" />
+          <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;400;700&display=swap" rel="stylesheet" />
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
           {styleTags}
         </Head>

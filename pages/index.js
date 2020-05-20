@@ -1,12 +1,20 @@
-import styled from 'styled-components';
+import {useState} from "react";
+// import MenuCard from "../components/Cards/MenuCard";
+import DesktopLayout from "../components/Layout/DesktopLayout";
+// import MainSection from "../components/Sections/MainSection";
+// import RecipeSection from "../components/Sections/RecipeSection";
+import Head from 'next/head';
 
-const Test = styled.div`
-	width: 100px;
-	height: 100px;
-	background: red;
-`
+const HomePage = () => {
+	const [keyword, setKeyword] = useState('')
+	return (
+		<>
+			<DesktopLayout
+				// section1={<MainSection keyword={keyword} setKeyword={setKeyword}/>}
+				// section2={<RecipeSection keyword={keyword} />}
+			/>
+		</>
+	)
+}
 
-
-export default () => (
-  <Test>Welcome to next.js!</Test>
-)
+export default HomePage
